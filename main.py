@@ -55,8 +55,10 @@ def verify_token(body: TokenRequest):
             "aud": claims.get("aud"),
         }
 
+    
     except (InvalidTokenError, ValueError, TypeError):
-        raise HTTPException(
+        return JSONResponse(
             status_code=401,
-            detail={"valid": False},
+            content={"valid": False}
         )
+
